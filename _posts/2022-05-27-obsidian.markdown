@@ -1,0 +1,29 @@
+---
+layout: post
+title: My love letter to Obsidian
+---
+
+![Obsidian](https://obsidian.md/images/screenshot.png)
+
+Ok so you might not have heard about it, but I need you to know about it: [Obsidian](https://obsidian.md/). What is it? A note taking app in beautiful markdown. And I hear you, what's the big deal? If you look at this strange graph grabbed from their website, you might get an idea. "Everything is connected", and that's exactly what makes it great. It's based on this method called [zettelkasten](https://en.wikipedia.org/wiki/Zettelkasten):
+
+
+  *The zettelkasten (German: "slip box", plural zettelkästen) is a system of note-taking and personal knowledge management used in research and study. Variations of the note taking system are known by the "card index" or "index card file" in English and fichier boîte ("file box") in French contexts.* 
+
+-- Wikipedia
+
+In layman's terms it's a note taking system that allows the note-taker to relate notes to each other. This tool has slowely taken over my note-taking life. And with the added bonus of apps and options to sync your notes across all your devices, It's now where I note *everything* - even this post. The more you use it, the better your notes link together. I personally use it for journaling as well, so every note is related to a specific journal. Eventually, as you build your knowledge base, you will end up with a beautiful graph (like mine;)). I won't go into how you should use it, but if you think it's interesting you should definitely take a look around. 
+
+Features I use:
+
+- Template generation
+- Community plugins: Mind Maps, Zotero library plugin, Latex
+- Obsidian Sync: Payed feature to sync and backup your notes/vault
+- Mermaid
+- Code blocks
+- PDF-viewer
+and more...
+
+![Tord's Graph](/assets/obsidian_scsh.png)
+
+My note graph ^-^
