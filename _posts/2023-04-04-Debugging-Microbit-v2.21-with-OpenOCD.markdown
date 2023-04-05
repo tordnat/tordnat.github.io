@@ -1,12 +1,8 @@
 ---
 layout: post
-
 title: Debugging Microbit v2.1 with OpenOCD
-
-date: 2023-04-05 20:47:52 +0100
-
+date: 2023-04-05 20:30:52 +0100
 categories: embedded
-
 ---
 
 This year I was tasked with helping students at my university with programming with BBC Microbit v2.21. Microbit is a powerful embedded platform introduced and developed by the BBC as an initiative to get kids interested in coding and computer science at an early age. Hilarious at it is, the way we use them at our university is to introduce students to bare-metal programming in embedded C. We want to bypass all the fancy fuss (python, Scratch and MakeCode) and program the on-board nRF52833 SoC directly. This is usually done by flashing the Microbit with J-Link OB; an on-board version of J-Link which allows us to flash and debug the chip with ease. Unluckily for us, the chip shortage has affected the Microbit as well (no supply exceptions for kids!). Therefore, BBC got creative and replaced the Freescale KL27 interface-chip with a Nordic nRF52833/nRF52820, which again means the J-Link OB used for previous version (v2.20) is no longer suitable for our Microbit. This is where I had to get creative.
@@ -74,7 +70,6 @@ For VSCode you can chose if you want to use OpenOCD or pyOCD. I chose pyOCD, but
 pip3 install pyocd
 ```
 
-
 To debug the Microbit in VSCode you need an extra extension: [Cortex-Debug](https://marketplace.visualstudio.com/items?itemName=marus25.cortex-debug). This plugin will launch pyocd and GDB at the same time, and will make it possible to view all the register values of our target MCU. Make sure to replace the absolute path variables before using the config listed below. gcc-arm-none-eabi is required, and some systems (Ubuntu) you need arm-none-eabi-gdb to debug the arm architecture. 
 
 ```
@@ -84,7 +79,7 @@ To debug the Microbit in VSCode you need an extra extension: [Cortex-Debug](http
         {
             "name": "Micro:bit v2.2.1 pyOCD Debugger",
             "cwd": "${workspaceRoot}",
-            "executable": "./.build_system/main.elf",
+            "executable": "./path/to/build_system/main.elf",
             "request": "launch",
             "type": "cortex-debug",
             "runToEntryPoint": "main",
