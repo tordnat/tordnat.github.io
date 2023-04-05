@@ -1,8 +1,7 @@
 ---
 layout: post
-title: Debugging Microbit v2.1 with OpenOCD
-date: 2023-04-05 20:30:52 +0100
-categories: embedded
+title: Debugging Microbit v2.21 with OpenOCD
+date: 2023-04-05
 ---
 
 This year I was tasked with helping students at my university with programming with BBC Microbit v2.21. Microbit is a powerful embedded platform introduced and developed by the BBC as an initiative to get kids interested in coding and computer science at an early age. Hilarious at it is, the way we use them at our university is to introduce students to bare-metal programming in embedded C. We want to bypass all the fancy fuss (python, Scratch and MakeCode) and program the on-board nRF52833 SoC directly. This is usually done by flashing the Microbit with J-Link OB; an on-board version of J-Link which allows us to flash and debug the chip with ease. Unluckily for us, the chip shortage has affected the Microbit as well (no supply exceptions for kids!). Therefore, BBC got creative and replaced the Freescale KL27 interface-chip with a Nordic nRF52833/nRF52820, which again means the J-Link OB used for previous version (v2.20) is no longer suitable for our Microbit. This is where I had to get creative.
