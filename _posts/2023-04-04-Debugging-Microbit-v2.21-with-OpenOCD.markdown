@@ -12,7 +12,7 @@ categories: embedded
 This year I was tasked with helping students at my university with programming with BBC Microbit v2.21. Microbit is a powerful embedded platform introduced and developed by the BBC as an initiative to get kids interested in coding and computer science at an early age. Hilarious at it is, the way we use them at our university is to introduce students to bare-metal programming in embedded C. We want to bypass all the fancy fuss (python, Scratch and MakeCode) and program the on-board nRF52833 SoC directly. This is usually done by flashing the Microbit with J-Link OB; an on-board version of J-Link which allows us to flash and debug the chip with ease. Unluckily for us, the chip shortage has affected the Microbit as well (no supply exceptions for kids!). Therefore, BBC got creative and replaced the Freescale KL27 interface-chip with a Nordic nRF52833/nRF52820, which again means the J-Link OB used for previous version (v2.20) is no longer suitable for our Microbit. This is where I had to get creative.
 
 
-![](https://tech.microbit.org/docs/software/assets/v2-interface.png)
+![Microbit Device Layer Visualization](https://tech.microbit.org/docs/software/assets/v2-interface.png)
 
 
 Ok. So what are we working with? The Microbit has to MCUs: an interface MCU nRF52833/nRF52820 (talks to target MCU and PC) and a target MCU nRF52833 SoC  (where our code runs). The DAPLink firmware that's running on the interface MCU is an interface firmware designed to enumerate as a USB composite device, and create a way for us to talk with the target MCUs debug. This is what allows us to drag-n-drop our code to it just as if it were a USB stick. It supports UART (for serial communication), WebUSB (for python, MakeCode etc.) and CMSIS-DAP (huh?). A quick google search gave this answer from the ARM mbed handbook.  
@@ -101,7 +101,6 @@ To debug the Microbit in VSCode you need an extra extension: [Cortex-Debug](http
         }
     ]
 }
-
 ```
 
 (if you get any errors, you best bet is to download the GNU arm toolchain manually, and not via a package manager such as apt and homebrew)
