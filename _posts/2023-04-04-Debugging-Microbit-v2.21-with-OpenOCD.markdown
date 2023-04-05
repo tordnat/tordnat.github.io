@@ -3,13 +3,14 @@ layout: post
 
 title: Debugging Microbit v2.1 with OpenOCD
 
-date: 2023-04-04 16:47:52 +0100
+date: 2023-04-05 20:47:52 +0100
 
 categories: embedded
 
 ---
 
 This year I was tasked with helping students at my university with programming with BBC Microbit v2.21. Microbit is a powerful embedded platform introduced and developed by the BBC as an initiative to get kids interested in coding and computer science at an early age. Hilarious at it is, the way we use them at our university is to introduce students to bare-metal programming in embedded C. We want to bypass all the fancy fuss (python, Scratch and MakeCode) and program the on-board nRF52833 SoC directly. This is usually done by flashing the Microbit with J-Link OB; an on-board version of J-Link which allows us to flash and debug the chip with ease. Unluckily for us, the chip shortage has affected the Microbit as well (no supply exceptions for kids!). Therefore, BBC got creative and replaced the Freescale KL27 interface-chip with a Nordic nRF52833/nRF52820, which again means the J-Link OB used for previous version (v2.20) is no longer suitable for our Microbit. This is where I had to get creative.
+
 
 ![](https://tech.microbit.org/docs/software/assets/v2-interface.png)
 
@@ -23,10 +24,13 @@ A lead!  So we need to find some piece of software that supports this type of in
 ```
 brew install openocd
 ```
+
 or 
+
 ```
 sudo apt install openocd
 ```
+
 Since we use nRF52, we'll add that to our configuration:
 
 ```
@@ -57,6 +61,7 @@ Info : [nrf52.cpu] target has 6 breakpoints, 4 watchpoints
 Info : starting gdb server for nrf52.cpu on 3333
 Info : Listening on port 3333 for gdb connections
 ```
+
 Brilliant! As expected, OpenOCD connects to our Microbit over CMSIS-DAP. We can see that our Target MCU supports 6 breakpoints and 4 watchpoints. We can also see that it starts a telnet, tcl and gdb server. 
 
 Now we can connect it to a GDB-server, or in this case configure VSCode.
@@ -74,48 +79,29 @@ To debug the Microbit in VSCode you need an extra extension: [Cortex-Debug](http
 
 ```
 {
-
-
-"version": "0.2.0",
-
-"configurations": [
-
-{
-
-"name": "Micro:bit v2.2.1 pyOCD Debugger",
-
-"cwd": "${workspaceRoot}",
-
-"executable": "./path/to/your/main.elf",
-
-"request": "launch",
-
-"type": "cortex-debug",
-
-"runToEntryPoint": "main",
-
-"servertype": "pyocd",
-
-"configFiles": [
-
-"interface/cmsis-dap.cfg",
-
-"target/nrf52.cfg"
-
-],
-
-// MacOS w Homebrew
-
-"armToolchainPath": "/opt/homebrew/bin/",
-
-
-"preLaunchTask": "build"
-
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Micro:bit v2.2.1 pyOCD Debugger",
+            "cwd": "${workspaceRoot}",
+            "executable": "./.build_system/main.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "servertype": "pyocd",
+            "configFiles": [
+                "interface/cmsis-dap.cfg",
+                "target/nrf52.cfg"
+            ],
+            // MacOS
+            "armToolchainPath": "/opt/homebrew/bin/",
+            // Ubuntu
+            //"armToolchainPath": "/opt/arm-none-eabi-12.2/bin/",
+        "preLaunchTask": "build"
+        }
+    ]
 }
 
-]
-
-}
 ```
 
 (if you get any errors, you best bet is to download the GNU arm toolchain manually, and not via a package manager such as apt and homebrew)
@@ -127,7 +113,7 @@ Testing with a single breakpoint gives us full control of our Microchip, includi
 
 ## Sources
 
-[Rust on BBC micro:bit - hardware debugging](https://flames-of-code.netlify.app/blog/rust-microbit-3/)
-[Microbit docs: DAPLink and the USB interface](https://tech.microbit.org/software/daplink-interface/)
-[arm MBED DAPLink](https://github.com/ARMmbed/DAPLink)
-[arm MBED Handbook: CMSIS DAP](https://os.mbed.com/handbook/CMSIS-DAP)
+- [Rust on BBC micro:bit - hardware debugging](https://flames-of-code.netlify.app/blog/rust-microbit-3/)
+- [Microbit docs: DAPLink and the USB interface](https://tech.microbit.org/software/daplink-interface/)
+- [arm MBED DAPLink](https://github.com/ARMmbed/DAPLink)
+- [arm MBED Handbook: CMSIS DAP](https://os.mbed.com/handbook/CMSIS-DAP)
