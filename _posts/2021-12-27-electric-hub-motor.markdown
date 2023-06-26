@@ -26,7 +26,7 @@ The model listed above has the current layout:
 * b = b - green
 * c = c - blue 
 
-### How to find the of a BLDC-motor
+### How to find the KV of a BLDC-motor
 
 We want to measure phase to phase voltage, so connect an oscilloscope where the probe is on one phase/connector, and ground is on another.
 
