@@ -21,7 +21,7 @@
 title: Thought Repository
 email: tord[at]natlandsmyr.com
 description: >- # this means to ignore newlines until "baseurl:" 
-  Engineering, litterature, art and unwanted opinions.
+  I post here, barely.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://natlandsmyr.com" # the base hostname & protocol for your site, e.g. http://example.com
 
