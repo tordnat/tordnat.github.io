@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Studying control engineering. Intersted in everyting from language to cryptography.
+Studying control engineering. Intersted in everything from language to cryptography.
 Much love to jekyll for this amazing site generator ^o^.
 
 You can find the source code for the template I'm using at Minima, GitHub:
