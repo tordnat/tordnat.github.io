@@ -1,0 +1,22 @@
+entries:
+  - title: About me
+    entries:
+      - title: Pursuing a MSc in Cybernetics and Robotics at NTNU
+      - title: Working part-time building drones at the Autonomous Robots Lab NTNU and teaching modelling and simulation in Python
+      - title: Github profile
+        url: https://github.com/tordnat
+      - title: LinkedIn
+        url: https://www.linkedin.com/in/tord-natlandsmyr/
+      - title: CV
+        url: https://folk.ntnu.no/tordna/Tords_CV.pdf
+
+  - title: all posts
+    post_list:
+      limit: 5
+      show_more: true
+      show_more_text: See archive...
+      show_more_url: archive.html
+
+
+  - title: rss
+    url: feed.xml
