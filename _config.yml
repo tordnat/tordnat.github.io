@@ -32,7 +32,7 @@ github_username:  tordnat
 # Build settings
 
 
-remote_theme: no-style-please
+remote_theme: riggraz/no-style-please
 plugins:
   - jekyll-feed
 
