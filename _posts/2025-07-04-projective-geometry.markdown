@@ -68,7 +68,7 @@ $$
 In euclidean space $\mathbb{R}^n$ excluding the origin $x ≠ 0$ we can describe an equivalence class
 
 $$
-[x] := \set{y\in \mathbb{R}^n | y \sim x}
+[x] := \set{y\in \mathbb{R}^n \mid y \sim x}
 $$
 
 Which describes every line through the origin in $\mathbb{R}^n$. For example:
@@ -80,7 +80,7 @@ $$
 Meaning the lines equvalent to $\begin{bmatrix} 2 \\ 2 \end{bmatrix}$ are equal to the lines equivalent to $\begin{bmatrix} 1 \\ 1 \end{bmatrix}$. With this notation we can define the projective space $\mathbb{P}^n$:
 
 $$
-\mathbb{P}^n =  \bf \set{\left[ x\right] | x \in \mathbb{R}^{n+1} \setminus \set{0} }
+\mathbb{P}^n =  \bf \set{\left[ x\right] \mid x \in \mathbb{R}^{n+1} \setminus \set{0} }
 $$
 
 Wow. That looks scary. What does this even mean? Reading it out we can see "The n-th dimensional projective space $\mathbb{P}^n$ is the set of all equivalent lines $[\bf x]$ in the $n +1$ dimensional Euclidean space $\mathbb{R}^{n+1}$ excluding the origin $\bf 0$." It's scary because it's compact. We'll need a bit more time to unpack every element of this definition, but I promise it will make sense in the end. 
@@ -104,7 +104,7 @@ $$
 \bf{x} =\begin{bmatrix} x \\ y\\ 0\end{bmatrix}
 $$
 
-The the scale of $z$ becomes inconsequential in the limit, which means any point on $\mathbb{P}^2$ at infinity will converge to $[[x, y, 0]], which is on the plane $z=0$. This is by design, and is one of the genious attributes of the projective space. We can describe normal points in $\mathbb{P}^2$ as lying on the plane $z=1$ such that $[x, y, 1]^T$, and points at infinity are on the plane $z=0$ such that $[x,y,0]^T$. Incidentally, $[x,y,0]^T$ describes the circle $\mathbb{S}^1$ on the plane $z=0$, which is exacly the same as the projective space $\mathbb{P}^1$ by the same analogy as above. Therefore, $\mathbb{P}^2$ can be viewed as a 2D plane {$z=1$} with a circle $\mathbb{P}^1$ attached. The same argument can be used to define $\mathbb{P}^3$ etc.
+The the scale of $z$ becomes inconsequential in the limit, which means any point on $\mathbb{P}^2$ at infinity will converge to $ \left[[x, y, 0]\right], which is on the plane $z=0$. This is by design, and is one of the genious attributes of the projective space. We can describe normal points in $\mathbb{P}^2$ as lying on the plane $z=1$ such that $[x, y, 1]^T$, and points at infinity are on the plane $z=0$ such that $[x,y,0]^T$. Incidentally, $[x,y,0]^T$ describes the circle $\mathbb{S}^1$ on the plane $z=0$, which is exacly the same as the projective space $\mathbb{P}^1$ by the same analogy as above. Therefore, $\mathbb{P}^2$ can be viewed as a 2D plane {$z=1$} with a circle $\mathbb{P}^1$ attached. The same argument can be used to define $\mathbb{P}^3$ etc.
 
 This type of constraint which enforces the properties of points in a projective space, give rise to a new form of coordinates called *homogeneous coordinates*. We'll examine homogeneous coordinates and figure out exactly what a point at infinity means, and how it applies to image formation.
 
@@ -171,7 +171,7 @@ After normalization by $Z$, we get the familiar pinhole camera equations: $x = X
 
 #### Camera Pose: Rotation $R$ and Translation $T$
 
-Real cameras aren't always positioned at the origin looking down the $z$-axis. The matrix $g$ (often written as $[R|T]$) accounts for the camera's position and orientation in the world:
+Real cameras aren't always positioned at the origin looking down the $z$-axis. The matrix $g$ (often written as $\left[R\mid T\right]$) accounts for the camera's position and orientation in the world:
 
 - $R$: A $3 \times 3$ rotation matrix that describes how the camera is oriented relative to the world coordinate system
 - $T$: A $3 \times 1$ translation vector that describes where the camera is located in world coordinates
@@ -205,7 +205,7 @@ Notice how this connects back to our focal length $f$ from the pinhole camera? I
 
 The complete projection process follows these steps:
 
-1. **World to Camera**: Transform 3D world point using $[R|T]$
+1. **World to Camera**: Transform 3D world point using $\left[R \mid T\right]$
 2. **Camera to Image**: Apply perspective projection $\Pi_0$  
 3. **Image to Pixels**: Convert to pixel coordinates using $K$
 
@@ -220,10 +220,10 @@ This $3 \times 4$ matrix $\Pi = [KR, KT]$ directly transforms 3D world points in
 We can interpret points with $x_4 = 0$ in $\bf X_0$ as points infinitely far away from the optical center. This is because for a very small value $x_4 = \epsilon$, if we normalize $\bf X_0$ on $x_4$:
 
 $$
-{\bf{X_0}} = [x/\epsilon, y/\epsilon, z/\epsilon, 1]^T \\
+{\bf{X_0}} = \left[x/\epsilon, y/\epsilon, z/\epsilon, 1\right]^T \\
 $$
 
-As $|\epsilon| \rightarrow 0$, $\bf X_0$ converges to $[0, 0, 0, 1]{\bf X_0} = 0$, meaning:
+As $\|\epsilon\| \rightarrow 0$, $\bf X_0$ converges to $[0, 0, 0, 1]{\bf X_0} = 0$, meaning:
 
 $$
 {\bf X_0} = [x, y, z, 0]^T
@@ -267,7 +267,7 @@ $$
 
 (Similar for $L_2$)
 
-As $|\mu| \rightarrow \infty$ the coordinates of the two lines converge to $\mu V$, which can be viewed as the intersection between the lines $L_1$ and $L_2$. If we then project the coordinate
+As $\|\mu\| \rightarrow \infty$ the coordinates of the two lines converge to $\mu V$, which can be viewed as the intersection between the lines $L_1$ and $L_2$. If we then project the coordinate
 
 $$
 x' \sim \Pi \mu V \sim \Pi V
