@@ -98,7 +98,7 @@ $$
 \bf{x} =\begin{bmatrix} x/z \\ y/z \\ 1\end{bmatrix}
 $$
 
-As $z \rightarrow \infin$ $\bf x$ approaches direction
+As $z \rightarrow \infty $ $\bf x$ approaches direction
 
 $$
 \bf{x} =\begin{bmatrix} x \\ y\\ 0\end{bmatrix}
@@ -229,10 +229,10 @@ $$
 {\bf X_0} = [x, y, z, 0]^T
 $$
 
-This is called the plane at infinity $\mathbb{P}_\infin$:
+This is called the plane at infinity $\mathbb{P}_\infty$:
 
 $$
-\mathbb{P}_\infin := \mathbb{P}^3 \setminus \mathbb{R}^3 = \mathbb{P}^2
+\mathbb{P}_\infty := \mathbb{P}^3 \setminus \mathbb{R}^3 = \mathbb{P}^2
 $$
 
 This space is well-defined, and allows us to talk about points infinitely far away from the camera. 
@@ -267,7 +267,7 @@ $$
 
 (Similar for $L_2$)
 
-As $|\mu| \rightarrow \infin$ the coordinates of the two lines converge to $\mu V$, which can be viewed as the intersection between the lines $L_1$ and $L_2$. If we then project the coordinate
+As $|\mu| \rightarrow \infty$ the coordinates of the two lines converge to $\mu V$, which can be viewed as the intersection between the lines $L_1$ and $L_2$. If we then project the coordinate
 
 $$
 x' \sim \Pi \mu V \sim \Pi V
