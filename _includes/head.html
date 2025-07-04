@@ -20,20 +20,25 @@
   <script>
     MathJax = {
       tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        // IMPORTANT: For best compatibility with Kramdown, prefer \(...\) for inline and \\[...\\] for display.
+        // Single dollar signs $...$ for inline can sometimes conflict with Markdown's italics/bold.
+        // Double dollar signs $$...$$ for display generally work well with Kramdown if on their own line.
+        inlineMath: [['$', '$'], ['\\(', '\\)']], // Keep $ for convenience, but use \( for reliability
         displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true,
-        tags: 'ams',
-        packages: {'[+]': ['ams']}
+        processEscapes: true, // Allows escaping dollar signs with \$
+        tags: 'ams', // Enables AMS equation numbering and features
+        packages: {'[+]': ['ams']} // Explicitly load AMS package for commands like \infty, \mathbb
       },
       chtml: {
-        fontCache: 'global'
+        fontCache: 'global' // Caches fonts for performance
       },
       loader: {
-        load: ['[tex]/ams']
+        load: ['[tex]/ams'] // Ensure AMS package is loaded
       },
       options: {
-        ignoreHtmlClass: 'highlight|language-|rouge-highlight|rouge-code'
+        // Prevents MathJax from processing code blocks, which often contain $ or other math-like characters.
+        // These are common classes Jekyll's Rouge highlighter adds to code.
+        ignoreHtmlClass: 'highlight|language-|rouge-highlight|rouge-code|mermaid' // Added 'mermaid' as a common block to ignore
       }
     };
   </script>
