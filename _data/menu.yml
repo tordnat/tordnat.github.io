@@ -2,7 +2,7 @@ entries:
   - title: about me
     entries:
       - title: Pursuing a MSc in Cybernetics and Robotics at NTNU
-      - title: Currenctly doing a research internship at the Smart Robotics Lab TUM / Mobiler Robotics Lab ETH
+      - title: Currenctly doing a research internship at the Smart Robotics Lab TUM / Mobile Robotics Lab ETH
   - title: reach out
     entries:
       - title: contact[at]natlandsmyr.com
@@ -10,7 +10,7 @@ entries:
         url: https://github.com/tordnat
       - title: LinkedIn
         url: https://www.linkedin.com/in/tord-natlandsmyr/
-      - title: CV (on request only)
+      - title: CV on request only
 
   - title: all posts
     post_list:
