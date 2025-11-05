@@ -18,7 +18,7 @@ This is just a simple test to see whether it's possible to embed a Three js anim
   
   // Set background color to match theme
   const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  scene.background = new THREE.Color(isDarkMode ? 0x1a1a1a : 0xffffff);
+  scene.background = new THREE.Color(isDarkMode ? 0x1a1a1a : 0xf0f0f0);
   
   const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
   camera.position.set(3, 3, 3);
@@ -26,6 +26,9 @@ This is just a simple test to see whether it's possible to embed a Three js anim
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
+  // Enable shadows
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Softer shadows
   container.appendChild(renderer.domElement);
   
   // Add OrbitControls for smooth interaction
@@ -39,23 +42,49 @@ This is just a simple test to see whether it's possible to embed a Three js anim
   controls.autoRotateSpeed = 2.0;
   
   // Add lights for better visualization
-  const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+  const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
   scene.add(ambientLight);
   
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
   directionalLight.position.set(5, 5, 5);
   directionalLight.castShadow = true;
+  // Shadow camera settings
+  directionalLight.shadow.camera.near = 0.1;
+  directionalLight.shadow.camera.far = 20;
+  directionalLight.shadow.camera.left = -5;
+  directionalLight.shadow.camera.right = 5;
+  directionalLight.shadow.camera.top = 5;
+  directionalLight.shadow.camera.bottom = -5;
+  // Higher resolution shadows
+  directionalLight.shadow.mapSize.width = 2048;
+  directionalLight.shadow.mapSize.height = 2048;
   scene.add(directionalLight);
   
-  // Add a cube with better material to show lighting
+  // Add a cube with better material
   const geometry = new THREE.BoxGeometry();
-  const material = new THREE.MeshPhongMaterial({ 
+  const material = new THREE.MeshStandardMaterial({ 
     color: 0x0077ff,
-    shininess: 100,
-    specular: 0x222222
+    metalness: 0.3,
+    roughness: 0.4,
   });
   const cube = new THREE.Mesh(geometry, material);
+  cube.castShadow = true; // Enable shadow casting
+  cube.receiveShadow = true; // Enable shadow receiving
+  cube.position.y = 0.5; // Lift cube slightly
   scene.add(cube);
+  
+  // Add a ground plane to receive shadows
+  const planeGeometry = new THREE.PlaneGeometry(10, 10);
+  const planeMaterial = new THREE.MeshStandardMaterial({ 
+    color: isDarkMode ? 0x2a2a2a : 0xcccccc,
+    roughness: 0.8,
+    metalness: 0.2
+  });
+  const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+  plane.rotation.x = -Math.PI / 2;
+  plane.position.y = -0.5;
+  plane.receiveShadow = true; // Important: plane receives shadows
+  scene.add(plane);
   
   // Add axes helper for orientation
   const axesHelper = new THREE.AxesHelper(1.5);
@@ -78,6 +107,7 @@ This is just a simple test to see whether it's possible to embed a Three js anim
   
   // Handle theme changes (for auto appearance mode)
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    scene.background = new THREE.Color(e.matches ? 0x1a1a1a : 0xffffff);
+    scene.background = new THREE.Color(e.matches ? 0x1a1a1a : 0xf0f0f0);
+    plane.material.color.set(e.matches ? 0x2a2a2a : 0xcccccc);
   });
 </script>
