@@ -28,9 +28,9 @@ This is just a simple test to see whether it's possible to embed a Three js anim
     // Add a spinning cube
     const geometry = new THREE.BoxGeometry();
     const material = new THREE.MeshBasicMaterial({ color: 0x0077ff });
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8); (color, intensity)
-    directionalLight.position.set(5, 5, 5); // Default target light points to is (0, 0, 0)
-    directionalLight.castShadow = true; // Expensive, but pretty
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(5, 5, 5);
+    directionalLight.castShadow = true;
     scene.add(directionalLight);
     const cube = new THREE.Mesh(geometry, material);
     scene.add(cube);
