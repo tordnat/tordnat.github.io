@@ -6,35 +6,60 @@ date: 2025-11-05
 
 This is just a simple test to see whether it's possible to embed a Three js animation into this static website without breaking the site. 
 <h1>Here's a spinning cube</h1>
-<div id="three-container" style="width: 100%; max-width: 600px; height: 400px; margin: 20px 0; border: 1px solid #555; background: #000;"></div>
+<div id="three-container" style="width: 100%; max-width: 600px; height: 400px; margin: 20px 0; border: 1px solid #555; background: #000; position: relative; isolation: isolate;">
+  <!-- Canvas will be inserted here -->
+</div>
+<style>
+  /* Reset any global styles that might affect the canvas */
+  #three-container canvas {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    filter: none !important;
+    transform: none !important;
+    mix-blend-mode: normal !important;
+    opacity: 1 !important;
+    image-rendering: auto !important;
+    color-scheme: only light !important;
+  }
+  
+  /* Ensure the container doesn't inherit problematic styles */
+  #three-container {
+    filter: none !important;
+    transform-style: flat !important;
+    mix-blend-mode: normal !important;
+  }
+</style>
 <script type="module">
   import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.153.0/+esm';
   import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.153.0/examples/jsm/controls/OrbitControls.js/+esm';
   
   // Basic Three.js scene setup
   const container = document.getElementById('three-container');
-  const scene = new THREE.Scene();
   
-  // Use a neutral dark background that works for both themes
-  scene.background = new THREE.Color(0x0a0a0a);
+  // Clear container to ensure it's empty
+  container.innerHTML = '';
+  
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x1a1a1a);
   
   const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
   camera.position.set(4, 4, 4);
   
   const renderer = new THREE.WebGLRenderer({ 
     antialias: true,
-    alpha: false 
+    alpha: false,
+    powerPreference: "high-performance"
   });
   renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
-  // Enable shadows
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  // Ensure proper color output
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  
+  // Append canvas to container
   container.appendChild(renderer.domElement);
   
-  // Add OrbitControls for smooth interaction
+  // Add OrbitControls
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
@@ -45,7 +70,7 @@ This is just a simple test to see whether it's possible to embed a Three js anim
   controls.autoRotateSpeed = 2.0;
   
   // Add lights
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
   scene.add(ambientLight);
   
   const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
@@ -61,10 +86,10 @@ This is just a simple test to see whether it's possible to embed a Three js anim
   directionalLight.shadow.mapSize.height = 2048;
   scene.add(directionalLight);
   
-  // Add a cube
+  // Add a cube with solid color
   const cubeGeometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
   const cubeMaterial = new THREE.MeshStandardMaterial({ 
-    color: 0x0077ff,
+    color: new THREE.Color(0x0077ff),
     metalness: 0.2,
     roughness: 0.5
   });
@@ -77,7 +102,7 @@ This is just a simple test to see whether it's possible to embed a Three js anim
   // Add a ground plane
   const planeGeometry = new THREE.PlaneGeometry(10, 10);
   const planeMaterial = new THREE.MeshStandardMaterial({ 
-    color: 0x222222,
+    color: new THREE.Color(0x333333),
     roughness: 0.9,
     metalness: 0.1
   });
@@ -86,7 +111,7 @@ This is just a simple test to see whether it's possible to embed a Three js anim
   plane.receiveShadow = true;
   scene.add(plane);
   
-  // Add grid helper instead of axes for cleaner look
+  // Add grid helper
   const gridHelper = new THREE.GridHelper(10, 10, 0x444444, 0x222222);
   scene.add(gridHelper);
   
@@ -106,10 +131,4 @@ This is just a simple test to see whether it's possible to embed a Three js anim
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
   });
-  
-  // Ensure the canvas has proper styling to avoid CSS conflicts
-  const canvas = renderer.domElement;
-  canvas.style.display = 'block';
-  canvas.style.width = '100%';
-  canvas.style.height = '100%';
 </script>
