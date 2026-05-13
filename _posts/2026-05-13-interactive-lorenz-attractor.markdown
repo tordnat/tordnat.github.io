@@ -6,28 +6,6 @@ date: 2026-05-13
 
 I made this animation for the course Modelling and Simulation TTK4130 at NTNU. 
 
-<style>
-  /* Reset any global styles that might affect the canvas */
-  #lorenz-container canvas {
-    display: block !important;
-    width: 100% !important;
-    height: 100% !important;
-    filter: none !important;
-    transform: none !important;
-    mix-blend-mode: normal !important;
-    opacity: 1 !important;
-    image-rendering: auto !important;
-    color-scheme: only light !important;
-  }
-  
-  /* Ensure the container doesn't inherit problematic styles */
-  #lorenz-container {
-    filter: none !important;
-    transform-style: flat !important;
-    mix-blend-mode: normal !important;
-  }
-</style>
-
 <div id="lorenz-container" style="width: 100%; height: 60vh; min-height: 400px; border: 1px solid #555; position: relative; cursor: crosshair;">
   <div id="lorenz-hint" style="position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; color: rgba(255,255,255,0.45); font-size: 12px; pointer-events: none; font-family: sans-serif; user-select: none;">
     Drag to orbit &nbsp;&middot;&nbsp; Scroll to zoom &nbsp;&middot;&nbsp; Click to spawn a trajectory &mdash; 10 remaining
