@@ -6,8 +6,6 @@ date: 2026-05-13
 
 I made this animation for the course Modelling and Simulation TTK4130 at NTNU. 
 
-<h1>Here's a spinning cube</h1>
-
 <style>
   /* Reset any global styles that might affect the canvas */
   #lorenz-container canvas {
